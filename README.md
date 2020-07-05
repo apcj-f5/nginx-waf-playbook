@@ -1,9 +1,11 @@
 # NGINX App Protect Ansible Playbook
-1. nap_play.yml --> Generate app protect policy locally from jinja2 template (nap_base.j2) and apply onto remote NGINX (via ansible copy module) and reload nginx.
-2. elk_query_sig.yml --> Query elasticsearch (unauthenticated) to return signature_id by providing support_id
+Two files for use in demo:
+
+1. nap_play.yml --> Generates App Protect policy locally from jinja2 template (nap_base.j2), applies policy to remote NGINX (via ansible copy module) and then reloads NGINX.
+2. elk_query_sig.yml --> Queries Elasticsearch (unauthenticated) to return signature_id by providing support_id
 
 ## nap_play.yml
-Only require to define configuration object in nap_var.yml. Currently only build app protect policy based on those variables. Can be easily extended to includes other variable.
+Define configuration objects in nap_var.yml. Currently only builds WAF (App Protect) policy based on variables. Can be easily extended to includes other variables.
 
 ## Example
 
@@ -99,7 +101,7 @@ localhost                  : ok=1    changed=0    unreachable=0    failed=0    s
 ```
 
 ### elk_query_sig.yml
-In the event app protect rejected a URL provided with support ID.
+In the event that App Protect rejects a URL provides a violation/blocking page with support ID.
 
 Note: You may need to update Elasticsearch IP to your ELK stack.
 
